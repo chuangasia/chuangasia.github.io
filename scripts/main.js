@@ -70,7 +70,7 @@ trainee: {
   image: ...
   selected: false/true // whether user selected them
   eliminated: false/true
-  top8: false/true
+  top7: false/true
 }
 */
 function convertCSVArrayToTraineeData(csvArrays) {
@@ -89,7 +89,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee.grade = traineeArray[5];
     trainee.birthyear = traineeArray[6];
     trainee.eliminated = traineeArray[7] === 'e'; // sets trainee to be eliminated if 'e' appears in 7th col
-    trainee.top8 = traineeArray[7] === 't'; // sets trainee to top 8 if 't' appears in 7th column
+    trainee.top7 = traineeArray[7] === 't'; // sets trainee to top 7 if 't' appears in 7th column
     trainee.id = parseInt(traineeArray[8]) - 1; // trainee id is the original ordering of the trainees in the first csv
     trainee.image =
       trainee.name_romanized.replaceAll(" ", "").replaceAll("-", "") + ".png";
@@ -180,14 +180,14 @@ function populateTable(trainees) {
 function populateTableEntry(trainee) {
   // eliminated will have value "eliminated" only if trainee is eliminated and showEliminated is true, otherwise this is ""
   let eliminated = (showEliminated && trainee.eliminated) && "eliminated";
-  let top8 = (showTop8 && trainee.top8) && "top8";
+  let top7 = (showTop7 && trainee.top7) && "top7";
   const tableEntry = `
   <div class="table__entry ${eliminated}">
     <div class="table__entry-icon">
       <img class="table__entry-img" src="assets/trainees/${trainee.image}" />
       <div class="table__entry-icon-border ${trainee.grade.toLowerCase()}-rank-border"></div>
       ${
-        top8 ? '<div class="table__entry-icon-crown"></div>' : ''
+        top7 ? '<div class="table__entry-icon-crown"></div>' : ''
       }
       ${
         trainee.selected ? '<img class="table__entry-check" src="assets/check.png"/>' : ""
@@ -261,7 +261,7 @@ const abbreviatedNationalities = {
 function populateRankingEntry(trainee, currRank) {
   let modifiedNationality = trainee.nationality.toUpperCase();
   let eliminated = (showEliminated && trainee.eliminated) && "eliminated";
-  let top8 = (showTop8 && trainee.top8) && "top8";
+  let top7 = (showTop7 && trainee.top7) && "top7";
   const rankingEntry = `
   <div class="ranking__entry ${eliminated}">
     <div class="ranking__entry-view">
@@ -271,7 +271,7 @@ function populateRankingEntry(trainee, currRank) {
       </div>
       <div class="ranking__entry-icon-badge bg-${trainee.grade.toLowerCase()}">${currRank}</div>
       ${
-        top8 ? '<div class="ranking__entry-icon-crown"></div>' : ''
+        top7 ? '<div class="ranking__entry-icon-crown"></div>' : ''
       }
     </div>
     <div class="ranking__row-text">
@@ -339,7 +339,7 @@ const alternateRomanizations = {
   'park yewon': ['hot issue'],
   'jin hyeonju': ['belle','cignature'],
   'nana': ['prikil'],
-  'kotoko': ['prikil'],
+  'yukino': ['prikil'],
   'jeon jieun': ['busters'],
   'ahn seungbi': ['an seungbi','play with me club','pwmc'],
   'oh yoona': ['yoonah','play with me club','pwmc'],
@@ -393,7 +393,7 @@ function removeRankedTrainee(trainee) {
   return false;
 }
 
-const currentURL = "https://universeticket.github.io/";
+const currentURL = "https://chuangasia.github.io/";
 // Serializes the ranking into a string and appends that to the current URL
 function generateShareLink() {
   let shareCode = ranking.map(function (trainee) {
@@ -425,7 +425,7 @@ var trainees = [];
 var filteredTrainees = [];
 // holds the ordered list of rankings that the user selects
 var ranking = newRanking();
-const rowNums = [1,3,4];
+const rowNums = [1,2,4];
 //window.addEventListener("load", function () {
   populateRanking();
   readFromCSV("./trainee_info.csv");
