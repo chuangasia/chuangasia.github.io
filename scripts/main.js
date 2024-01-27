@@ -107,7 +107,7 @@ function newTrainee() {
     affiliation: '&#8203;', // this is a blank character
     nationality: '&#8203;',
     grade: 'no',
-    image: 'emptyrank.png',
+    image: 'empty_rank.png',
   };
 }
 
