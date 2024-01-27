@@ -60,9 +60,9 @@ function getRanking() {
 /*
 trainee: {
   id: ... // position in csv used for simple recognition
+  stage_name: ...
+  name_native: ...
   name_romanized: ...
-  name_hangul: ...
-  name_japanese: ...
   company: ...
   nationality: ...
   grade: a/b/c/d/f
@@ -76,13 +76,13 @@ trainee: {
 function convertCSVArrayToTraineeData(csvArrays) {
   trainees = csvArrays.map(function(traineeArray, index) {
     trainee = {};
-    trainee.name_romanized = traineeArray[0];
+    trainee.stage_name = traineeArray[0];
     if (traineeArray[2] === "-") {
       // trainee only has hangul
-      trainee.name_hangul = traineeArray[1];
+      trainee.name_native = traineeArray[1];
     } else {
-      trainee.name_japanese = traineeArray[1];
-      trainee.name_hangul = traineeArray[2];
+      trainee.name_romanized = traineeArray[1];
+      trainee.name_native = traineeArray[2];
     }
     trainee.company = traineeArray[3];
     trainee.nationality = traineeArray [4];
@@ -92,7 +92,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee.top7 = traineeArray[7] === 't'; // sets trainee to top 7 if 't' appears in 7th column
     trainee.id = parseInt(traineeArray[8]) - 1; // trainee id is the original ordering of the trainees in the first csv
     trainee.image =
-      trainee.name_romanized.replaceAll(" ", "").replaceAll("-", "") + ".png";
+      trainee.stage_name.replaceAll(" ", "").replaceAll("-", "") + ".png";
     return trainee;
   });
   filteredTrainees = trainees;
@@ -103,7 +103,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
 function newTrainee() {
   return {
     id: -1, // -1 denotes a blank trainee spot
-    name_romanized: '&#8203;', // this is a blank character
+    stage_name: '&#8203;', // this is a blank character
     company: '&#8203;', // this is a blank character
     nationality: '&#8203;',
     grade: 'no',
@@ -194,8 +194,8 @@ function populateTableEntry(trainee) {
       }
     </div>
     <div class="table__entry-text">
-      <span class="name"><strong>${trainee.name_romanized}</strong></span>
-      <span class="hangul">(${trainee.name_hangul})</span>
+      <span class="name"><strong>${trainee.stage_name}</strong></span>
+      <span class="hangul">(${trainee.name_native})</span>
       <span class="nationalityandyear">${trainee.nationality.toUpperCase()} •
       ${trainee.birthyear}</span>
     </div>
@@ -275,7 +275,7 @@ function populateRankingEntry(trainee, currRank) {
       }
     </div>
     <div class="ranking__row-text">
-      <div class="name"><strong>${trainee.name_romanized}</strong></div>
+      <div class="name"><strong>${trainee.stage_name}</strong></div>
       <div class="nationality">${modifiedNationality}</div>
     </div>
   </div>`;
@@ -352,10 +352,10 @@ function filterTrainees(event) {
   let filterText = event.target.value.toLowerCase();
   // filters trainees based on name, alternate names, company, nationality and birth year
   filteredTrainees = trainees.filter(function (trainee) {
-    let initialMatch = includesIgnCase(trainee.name_romanized, filterText) || includesIgnCase (trainee.company, filterText) || includesIgnCase (trainee.birthyear, filterText) || includesIgnCase (trainee.nationality, filterText);
+    let initialMatch = includesIgnCase(trainee.stage_name, filterText) || includesIgnCase (trainee.company, filterText) || includesIgnCase (trainee.birthyear, filterText) || includesIgnCase (trainee.nationality, filterText);
     // if alernates exists then check them as well
     let alternateMatch = false;
-    let alternates = alternateRomanizations[trainee.name_romanized.toLowerCase()]
+    let alternates = alternateRomanizations[trainee.stage_name.toLowerCase()]
     if (alternates) {
       for (let i = 0; i < alternates.length; i++) {
         alternateMatch = alternateMatch || includesIgnCase(alternates[i], filterText);
