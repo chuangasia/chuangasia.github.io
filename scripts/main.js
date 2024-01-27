@@ -63,9 +63,9 @@ trainee: {
   stage_name: ...
   name_native: ...
   name_romanized: ...
-  company: ...
+  affiliation: ...
   nationality: ...
-  grade: a/b/c/d/f
+  rating: ????
   birthyear: ...
   image: ...
   selected: false/true // whether user selected them
@@ -84,7 +84,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
       trainee.name_romanized = traineeArray[1];
       trainee.name_native = traineeArray[2];
     }
-    trainee.company = traineeArray[3];
+    trainee.affiliation = traineeArray[3];
     trainee.nationality = traineeArray [4];
     trainee.grade = traineeArray[5];
     trainee.birthyear = traineeArray[6];
@@ -104,7 +104,7 @@ function newTrainee() {
   return {
     id: -1, // -1 denotes a blank trainee spot
     stage_name: '&#8203;', // this is a blank character
-    company: '&#8203;', // this is a blank character
+    affiliation: '&#8203;', // this is a blank character
     nationality: '&#8203;',
     grade: 'no',
     image: 'emptyrank.png',
@@ -350,9 +350,9 @@ const alternateRomanizations = {
 // uses the current filter text to create a subset of trainees with matching info
 function filterTrainees(event) {
   let filterText = event.target.value.toLowerCase();
-  // filters trainees based on name, alternate names, company, nationality and birth year
+  // filters trainees based on name, alternate names, affiliation, nationality and birth year
   filteredTrainees = trainees.filter(function (trainee) {
-    let initialMatch = includesIgnCase(trainee.stage_name, filterText) || includesIgnCase (trainee.company, filterText) || includesIgnCase (trainee.birthyear, filterText) || includesIgnCase (trainee.nationality, filterText);
+    let initialMatch = includesIgnCase(trainee.stage_name, filterText) || includesIgnCase (trainee.affiliation, filterText) || includesIgnCase (trainee.birthyear, filterText) || includesIgnCase (trainee.nationality, filterText);
     // if alernates exists then check them as well
     let alternateMatch = false;
     let alternates = alternateRomanizations[trainee.stage_name.toLowerCase()]
