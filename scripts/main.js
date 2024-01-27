@@ -79,10 +79,10 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee.stage_name = traineeArray[0];
     if (traineeArray[1] === "-") {
       // trainee only has hangul
-      trainee.name_native = traineeArray[2];
+      trainee.name_native = '&#8203;';
     } else {
-      trainee.name_romanized = traineeArray[2];
-      trainee.name_native = traineeArray[1];
+      trainee.name_romanized = traineeArray[1];
+      trainee.name_native = traineeArray[2];
     }
     trainee.affiliation = traineeArray[3];
     trainee.nationality = traineeArray [4];
@@ -92,7 +92,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee.top7 = traineeArray[7] === 't'; // sets trainee to top 7 if 't' appears in 7th column
     trainee.id = parseInt(traineeArray[8]) - 1; // trainee id is the original ordering of the trainees in the first csv
     trainee.image =
-      trainee.stage_name.replaceAll(" ", "").replaceAll("-", "") + ".png";
+      trainee.stage_name.replaceAll(" ", "", ".").replaceAll("-", "", "_") + ".png";
     return trainee;
   });
   filteredTrainees = trainees;
