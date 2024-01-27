@@ -77,12 +77,12 @@ function convertCSVArrayToTraineeData(csvArrays) {
   trainees = csvArrays.map(function(traineeArray, index) {
     trainee = {};
     trainee.stage_name = traineeArray[0];
-    if (traineeArray[2] === "-") {
+    if (traineeArray[1] === "-") {
       // trainee only has hangul
-      trainee.name_native = traineeArray[1];
-    } else {
-      trainee.name_romanized = traineeArray[1];
       trainee.name_native = traineeArray[2];
+    } else {
+      trainee.name_romanized = traineeArray[2];
+      trainee.name_native = traineeArray[1];
     }
     trainee.affiliation = traineeArray[3];
     trainee.nationality = traineeArray [4];
@@ -195,7 +195,7 @@ function populateTableEntry(trainee) {
     </div>
     <div class="table__entry-text">
       <span class="name"><strong>${trainee.stage_name}</strong></span>
-      <span class="hangul">(${trainee.name_native})</span>
+      <span class="native">(${trainee.name_native})</span>
       <span class="nationalityandyear">${trainee.nationality.toUpperCase()} •
       ${trainee.birthyear}</span>
     </div>
