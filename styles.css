@@ -14,12 +14,12 @@
   --checked-green: #097231;
 
   /* ranking border colors */
-  --p-rank: #f8be2f;
+  --p-rank: #71F6A0;
   --r-rank: #fd5293;
   --i-rank: #deb0e4;
   --s-rank: #5f33c7;
   --m-rank: #0167eb;
-  --no-rank: #6a4165;
+  --no-rank: #6947ee;
 }
 
 p {
@@ -56,7 +56,7 @@ body {
 }
 #banner-subtitle {
   font-family: 'Roboto Condensed', sans-serif;
-  color: #ffd1d8;
+  color: #71F6A0;
   font-size: 12px;
 }
 
@@ -114,14 +114,14 @@ body {
   border: none;
   border-radius: 3px;
   padding: 4px 6px 4px 6px;
-  background-color: #f4466f;
+  background-color: #6947ee;
   font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   font-weight: 700;
   color: white;
 }
 #getlink-button:active { /* these styles are active while get link is being pressed */
-  background-color: #F2819D;
+  background-color: #71F6A0;
 }
 #getlink-textbox {
   margin-left: 5px;
