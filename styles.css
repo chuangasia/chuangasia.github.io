@@ -38,7 +38,7 @@ body {
 
 /* Styles for banner */
 #top-banner {
-  background: radial-gradient(circle, var(--banner-bg-start), var(--banner-bg-end) 70%);
+  background: radial-gradient(circle, var(--banner-bg-start), var(--banner-bg-end) 30%);
   /* background-color: var(--banner-bg-color); */
   padding: 25px;
 
@@ -261,8 +261,9 @@ body {
   font-size: 12px;
   color: var(--name-gray);
 }
-.table__entry .hangul {
-  font-size: 12px;
+.table__entry .native {
+  font-size: 10px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: var(--other-name-gray);
 }
 .table__entry .nationalityandyear {
