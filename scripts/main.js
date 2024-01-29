@@ -81,8 +81,8 @@ function convertCSVArrayToTraineeData(csvArrays) {
       // trainee only has hangul
       trainee.name_native = traineeArray[1];
     } else {
-      trainee.name_romanized = traineeArray[1];
-      trainee.name_native = traineeArray[2];
+      trainee.name_native = traineeArray[1];
+      trainee.name_romanized = traineeArray[2];
     }
     trainee.affiliation = traineeArray[3];
     trainee.nationality = traineeArray [4];
