@@ -65,7 +65,7 @@ trainee: {
   name_romanized: ...
   affiliation: ...
   nationality: ...
-  rating: ????
+  rating: ...
   birthyear: ...
   image: ...
   selected: false/true // whether user selected them
@@ -78,7 +78,7 @@ function convertCSVArrayToTraineeData(csvArrays) {
     trainee = {};
     trainee.stage_name = traineeArray[0];
     if (traineeArray[2] === "-") {
-      // trainee only has hangul
+      // trainee only has one name
       trainee.name_native = traineeArray[1];
     } else {
       trainee.name_romanized = traineeArray[1];
@@ -86,13 +86,13 @@ function convertCSVArrayToTraineeData(csvArrays) {
     }
     trainee.affiliation = traineeArray[3];
     trainee.nationality = traineeArray [4];
-    trainee.grade = traineeArray[5];
+    trainee.rating = traineeArray[5];
     trainee.birthyear = traineeArray[6];
     trainee.eliminated = traineeArray[7] === 'e'; // sets trainee to be eliminated if 'e' appears in 7th col
     trainee.top7 = traineeArray[7] === 't'; // sets trainee to top 7 if 't' appears in 7th column
     trainee.id = parseInt(traineeArray[8]) - 1; // trainee id is the original ordering of the trainees in the first csv
     trainee.image =
-      trainee.stage_name.replaceAll(" ", "", ".").replaceAll("-", "", "_") + ".png";
+      trainee.stage_name.replaceAll(" ", "", ".").replaceAll("-", "", "-") + ".png";
     return trainee;
   });
   filteredTrainees = trainees;
