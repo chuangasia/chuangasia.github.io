@@ -106,7 +106,7 @@ function newTrainee() {
     stage_name: '&#8203;', // this is a blank character
     affiliation: '&#8203;', // this is a blank character
     nationality: '&#8203;',
-    grade: 'no',
+    rating: 'no',
     image: 'empty_rank.png',
   };
 }
@@ -185,7 +185,7 @@ function populateTableEntry(trainee) {
   <div class="table__entry ${eliminated}">
     <div class="table__entry-icon">
       <img class="table__entry-img" src="assets/trainees/${trainee.image}" />
-      <div class="table__entry-icon-border ${trainee.grade.toLowerCase()}-rank-border"></div>
+      <div class="table__entry-icon-border ${trainee.rating.toLowerCase()}-rank-border"></div>
       ${
         top7 ? '<div class="table__entry-icon-thingy"></div>' : ''
       }
@@ -267,9 +267,9 @@ function populateRankingEntry(trainee, currRank) {
     <div class="ranking__entry-view">
       <div class="ranking__entry-icon">
         <img class="ranking__entry-img" src="assets/trainees/${trainee.image}" />
-        <div class="ranking__entry-icon-border ${trainee.grade.toLowerCase()}-rank-border" data-rankid="${currRank-1}"></div>
+        <div class="ranking__entry-icon-border ${trainee.rating.toLowerCase()}-rank-border" data-rankid="${currRank-1}"></div>
       </div>
-      <div class="ranking__entry-icon-badge bg-${trainee.grade.toLowerCase()}">${currRank}</div>
+      <div class="ranking__entry-icon-badge bg-${trainee.rating.toLowerCase()}">${currRank}</div>
       ${
         top7 ? '<div class="ranking__entry-icon-thingy"></div>' : ''
       }
