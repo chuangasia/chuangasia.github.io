@@ -3,7 +3,7 @@
 // always initially sort by id
 var activeCompares = [idCompare]
 var showEliminated = false;
-var showTop7 = false;
+var showTop9 = false;
 
 // This a compare by id on the trainees and guarantees stability of the sort
 function idCompare(trainee1, trainee2) {
@@ -66,9 +66,9 @@ function showEliminatedClick(event) {
 function show9Click(event) {
   let checkbox = event.target;
   if (checkbox.checked) {
-    showTop7 = true;
+    showTop9 = true;
   } else {
-    showTop7 = false;
+    showTop9 = false;
   }
   rerenderTable();
   rerenderRanking();
