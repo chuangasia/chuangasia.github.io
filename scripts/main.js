@@ -114,7 +114,7 @@ function newTrainee() {
 // Constructor for a blank ranking list
 function newRanking() {
   // holds the ordered list of rankings that the user selects
-  let ranking = new Array(8);
+  let ranking = new Array(9);
   for (let i = 0; i < ranking.length; i++) {
     ranking[i] = newTrainee();
   }
@@ -180,7 +180,7 @@ function populateTable(trainees) {
 function populateTableEntry(trainee) {
   // eliminated will have value "eliminated" only if trainee is eliminated and showEliminated is true, otherwise this is ""
   let eliminated = (showEliminated && trainee.eliminated) && "eliminated";
-  let top9 = (showtop9 && trainee.top9) && "top9";
+  let top9 = (showTop9 && trainee.top9) && "top9";
   const tableEntry = `
   <div class="table__entry ${eliminated}">
     <div class="table__entry-icon">
@@ -261,7 +261,7 @@ const abbreviatedNationalities = {
 function populateRankingEntry(trainee, currRank) {
   let modifiedNationality = trainee.nationality.toUpperCase();
   let eliminated = (showEliminated && trainee.eliminated) && "eliminated";
-  let top9 = (showtop9 && trainee.top9) && "top9";
+  let top9 = (showTop9 && trainee.top9) && "top9";
   const rankingEntry = `
   <div class="ranking__entry ${eliminated}">
     <div class="ranking__entry-view">
