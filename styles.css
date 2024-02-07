@@ -14,7 +14,7 @@
   --checked-green: #097231;
 
   /* ranking border colors */
-  --p-rank: #71F6A0;
+  --MVP-rank: #71F6A0;
   --r-rank: #fd5293;
   --i-rank: #deb0e4;
   --s-rank: #5f33c7;
@@ -226,7 +226,7 @@ body {
 }
 /* Different entry borders */
 .p-rank-border {
-  border: 5px solid var(--p-rank);
+  border: 5px solid var(--MVP-rank);
 }
 .r-rank-border {
   border: 5px solid var(--r-rank);
@@ -329,7 +329,7 @@ body {
   bottom: -5px;
   margin: auto;
   border-radius: 50%;
-  background-color: var(--p-rank);
+  background-color: var(--MVP-rank);
   box-sizing: border-box;
   padding: 2px;
   /* badge text options */
@@ -348,8 +348,8 @@ body {
 .bg-no {
   background-color: var(--no-rank);
 }
-.bg-p {
-  background-color: var(--p-rank);
+.bg-MVP {
+  background-color: var(--MVP-rank);
 }
 .bg-r {
   background-color: var(--r-rank);
